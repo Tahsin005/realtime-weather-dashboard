@@ -12,7 +12,7 @@ export default function LocationDropdown({ location, setLocation }: Props) {
             <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="City" />
             </SelectTrigger>
-            <SelectContent className="z-1001">
+            <SelectContent className="z-[1001]">
                 <SelectGroup>
                     {location === "custom" && (
                         <SelectItem value="custom">Custom</SelectItem>
