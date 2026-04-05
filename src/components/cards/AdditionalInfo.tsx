@@ -8,13 +8,16 @@ import Wind from "/src/assets/wind.svg?react"
 import Pressure from "/src/assets/pressure.svg?react"
 import UpArrow from "/src/assets/uparrow.svg?react"
 import Card from './Card'
+import type { Coords } from '../../types'
 
-type Props = {}
+type Props = {
+    coords: Coords
+}
 
-export default function AdditionalInfo({}: Props) {
+export default function AdditionalInfo({ coords }: Props) {
     const { data } = useSuspenseQuery({
-        queryKey: ["weather"],
-        queryFn: () => getWeather({ lat: 23.8103, lon: 90.4125 }),
+        queryKey: ["weather", coords],
+        queryFn: () => getWeather({ lat: coords.lat, lon: coords.lon }),
     })
     return (
         <Card
