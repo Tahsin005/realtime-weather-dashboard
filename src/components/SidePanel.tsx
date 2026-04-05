@@ -4,6 +4,8 @@ import type { Dispatch, SetStateAction } from "react"
 import Chevron from "/src/assets/ChevronLeft.svg?react"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { getAirPollution } from "@/api"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
+import Information from "/src/assets/information.svg?react"
 
 type Props = {
     coords: Coords
@@ -16,7 +18,7 @@ export default function SidePanel(props: Props) {
     return (
         <div
             className={clsx(
-                "fixed top-0 right-0 h-screen w-(--sidebar-width) shadow-md bg-sidebar z-1001 py-8 px-4 overflow-y-scroll transition-transform duration-300 lg:translate-x-0!",
+                "fixed top-0 right-0 h-screen w-(--sidebar-width) shadow-md bg-sidebar z-[1001] py-8 px-4 overflow-y-scroll transition-transform duration-300 lg:translate-x-0!",
                 isSidePanelOpen ? "translate-x-0" : "translate-x-full"
             )}
         >
@@ -36,6 +38,24 @@ function AirPollution({ coords }: Props) {
     return (
         <div className="flex flex-col gap-4">
             <h1 className="text-2xl font-semibold">Air Pollution</h1>
+            <h1 className="text-5xl font-semibold">{data.list[0].main.aqi}</h1>
+            <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-semibold">AQI</h1>
+                <Tooltip>
+                    <TooltipTrigger
+                        render={<button type="button" className="inline-flex items-center" aria-label="Air quality info" />}
+                    >
+                        <Information className="size-4" />
+                    </TooltipTrigger>
+                    <TooltipContent side="right" align="center">
+                        <p className="max-w-xs">
+                        {" "}
+                        Air Quality Index. Possible values: 1, 2, 3, 4, 5. Where 1 = Good,
+                        2 = Fair, 3 = Moderate, 4 = Poor, 5 = Very Poor.
+                        </p>
+                    </TooltipContent>
+                </Tooltip>
+            </div>
         </div>
     )
 }

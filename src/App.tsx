@@ -94,9 +94,9 @@ function App() {
       </div>
 
       <SidePanel
-          coords={coords}
-          isSidePanelOpen={isSidePanelOpen}
-          setIsSidePanelOpen={setIsSidePanelOpen}
+        coords={coords}
+        isSidePanelOpen={isSidePanelOpen}
+        setIsSidePanelOpen={setIsSidePanelOpen}
       />
     </>
   )
