@@ -3,7 +3,7 @@ import clsx from "clsx"
 
 type Props = {
     children: React.ReactNode,
-    title: string,
+    title?: string,
     className?: string,
     childrenClassName?: string,
 }
