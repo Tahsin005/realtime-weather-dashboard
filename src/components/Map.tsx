@@ -3,9 +3,24 @@ import 'leaflet/dist/leaflet.css'
 import type { Coords } from '../types'
 import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk"
 import { useEffect } from 'react'
+import L from 'leaflet'
+import markerIcon from 'leaflet/dist/images/marker-icon.png'
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY
 const MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY
+
+const defaultMarkerIcon = L.icon({
+    iconUrl: markerIcon,
+    iconRetinaUrl: markerIcon2x,
+    shadowUrl: markerShadow,
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28],
+    shadowSize: [41, 41],
+})
 
 type Props = {
     coords: Coords,
@@ -27,7 +42,7 @@ export default function Map({ coords, onMapClick, mapType }: Props) {
                 opacity={0.7}
                 url={`https://tile.openweathermap.org/map/${mapType}/{z}/{x}/{y}.png?appid=${API_KEY}`}
             />
-            <Marker position={[lat, lon]} />
+            <Marker position={[lat, lon]} icon={defaultMarkerIcon} />
         </MapContainer>
     )
 }
