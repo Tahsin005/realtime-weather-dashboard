@@ -25,12 +25,12 @@ export default function SidePanel(props: Props) {
                 isSidePanelOpen ? "translate-x-0" : "translate-x-full"
             )}
         >
-        <button onClick={() => setIsSidePanelOpen(false)}>
-            <Chevron className="size-8 -ml-2 lg:hidden" />
-        </button>
-        <Suspense fallback={<SidePanelSkeleton />}>
-            <AirPollution {...props} />
-        </Suspense>
+            <button onClick={() => setIsSidePanelOpen(false)}>
+                <Chevron className="size-8 -ml-2 lg:hidden" />
+            </button>
+            <Suspense fallback={<SidePanelSkeleton />}>
+                <AirPollution {...props} />
+            </Suspense>
         </div>
     )
 }
