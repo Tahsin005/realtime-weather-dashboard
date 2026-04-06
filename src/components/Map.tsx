@@ -5,6 +5,7 @@ import { MaptilerLayer } from "@maptiler/leaflet-maptilersdk"
 import { useEffect } from 'react'
 
 const API_KEY = import.meta.env.VITE_OPEN_WEATHER_API_KEY
+const MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY
 
 type Props = {
     coords: Coords,
@@ -50,7 +51,7 @@ function MapTileLayer() {
     useEffect(() => {
         const tileLayer = new MaptilerLayer({
             style: "basic-dark",
-            apiKey: "7GvxH7jlFpOK3JvCF80G",
+            apiKey: MAPTILER_API_KEY,
         })
         tileLayer.addTo(map)
 
