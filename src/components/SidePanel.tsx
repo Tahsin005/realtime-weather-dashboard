@@ -1,6 +1,6 @@
 import type { Coords } from "@/types"
 import clsx from "clsx"
-import type { Dispatch, SetStateAction } from "react"
+import { Suspense, type Dispatch, type SetStateAction } from "react"
 import Chevron from "/src/assets/ChevronLeft.svg?react"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { getAirPollution } from "@/api"
@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 import Information from "/src/assets/information.svg?react"
 import Card from "./cards/Card"
 import { Slider } from "./ui/slider"
+import SidePanelSkeleton from "./skeletons/SidePanelSkeleton"
 
 type Props = {
     coords: Coords
@@ -27,7 +28,9 @@ export default function SidePanel(props: Props) {
         <button onClick={() => setIsSidePanelOpen(false)}>
             <Chevron className="size-8 -ml-2 lg:hidden" />
         </button>
-        <AirPollution {...props} />
+        <Suspense fallback={<SidePanelSkeleton />}>
+            <AirPollution {...props} />
+        </Suspense>
         </div>
     )
 }
