@@ -17,6 +17,7 @@ import AdditionalInfoSkeleton from "./components/skeletons/AdditionalInfoSkeleto
 import SidePanel from "./components/SidePanel"
 import Hamburger from "/src/assets/hamburger.svg?react"
 import LightDarkToggle from "./components/LightDarkToggle"
+import MobileHeader from "./components/MobileHeader"
 
 function App() {
   const [coordinates, setCoords] = useState<Coords>({
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <>
+      <MobileHeader setIsSidePanelOpen={setIsSidePanelOpen} />
       <div className="flex flex-col gap-8 pt-4 p-8 xs:pt-8 lg:w-[calc(100dvw-var(--sidebar-width))] 2xl:h-screen 2xl:min-h-[1120px]">
         <div className="flex flex-col gap-4 xs:flex-row xs:gap-8">
           <div className="flex flex-col md:flex-row gap-2 md:gap-4">
